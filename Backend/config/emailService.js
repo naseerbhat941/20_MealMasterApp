@@ -9,7 +9,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Function to send the reset password email
 export const sendResetEmail = (email, resetToken) => {
   const mailOptions = {
     from: process.env.GMAIL_USER,  // Your Gmail address
