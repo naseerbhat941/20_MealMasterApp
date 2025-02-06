@@ -2,9 +2,18 @@ import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import { sendResetEmail } from "../config/emailService.js";
 
-export const register = async (req, res) => {
-  const { name, email, password, role } = req.body;
+export const getAllUsers = async (req, res) => {
   try {
+    const users = await User.find().select("-password");
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const register = async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
     const user = new User({ name, email, password, role });
     await user.save();
     res.status(201).json({ message: "User Registered" });
@@ -14,8 +23,8 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
   try {
+    const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user || !(await user.comparePassword(password))) return res.status(401).json({ message: "Invalid Credentials" });
 
@@ -27,13 +36,16 @@ export const login = async (req, res) => {
 };
 
 export const forgotPassword = async (req, res) => {
-  const { email } = req.body;
-  const user = await User.findOne({ email });
-  if (!user) return res.status(404).json({ message: "User Not Found" });
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: "User Not Found" });
 
-  const resetToken = user.generateResetToken();
-  await user.save();
-
-  await sendResetEmail(email, resetToken);
-  res.json({ message: "Reset Link Sent" });
+    const resetToken = user.generateResetToken();
+    await user.save();
+    await sendResetEmail(email, resetToken);
+    res.json({ message: "Reset Link Sent" });
+  } catch (err) {
+    res.status(500).json({ message: "Error processing request" });
+  }
 };

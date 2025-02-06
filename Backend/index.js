@@ -1,22 +1,26 @@
-import dotenv from "dotenv";
-import express from "express";
-import { connectToDb } from "./config/db.js";
-import authRoutes from './routes/authRoutes.js'
-import adminRoutes from "./routes/adminRoutes.js"
-import ingredientsroutes from './routes/ingredientsroutes.js';
-import nutrionalroutes from './routes/nutritionaltrackingroutes.js';
-import reciperoutes from './routes/reciperoutes.js';
-dotenv.config();
-const app = express();
-const port = process.env.PORT || 5001;
-const dbURI = process.env.dbURI;
-app.use(express.json())
-app.use("/api/auth", authRoutes)
-app.use("/api/admin", adminRoutes)
-app.use("/api/recipe",reciperoutes);
-app.use("api/daily-track",nutrionalroutes);
-app.use("api/ingredients",ingredientsroutes);
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import {connectToDb} from './config/db.js'
+import userRoutes from './routes/userRoutes.js';
+import recipeRoutes from './routes/recipeRoutes.js';
+import ingredientRoutes from './routes/ingredientRoutes.js';
+import foodLogRoutes from './routes/foodLogRoutes.js';
 
+dotenv.config();
+
+const app = express();
+
+app.use(express.json());
+
+app.use('/api/users', userRoutes);
+app.use('/api/recipes', recipeRoutes);
+app.use('/api/ingredients', ingredientRoutes);
+app.use('/api/foodlogs', foodLogRoutes);
+
+
+const port = process.env.PORT
+const dbURI= process.env.dbURI
 const start = async () => {
   try {
     await connectToDb(dbURI);
