@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
-import { connectToDb } from "./db.js";
+import { connectToDb } from "./config/db.js";
 import authRoutes from './routes/authRoutes.js'
 import adminRoutes from "./routes/adminRoutes.js"
 dotenv.config();
@@ -10,7 +10,6 @@ const dbURI = process.env.dbURI;
 app.use(express.json())
 app.use("/api/auth", authRoutes)
 app.use("/api/admin", adminRoutes)
-
 const start = async () => {
   try {
     await connectToDb(dbURI);
