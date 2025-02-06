@@ -1,16 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const FoodSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  product: { type: mongoose.Schema.Types.ObjectId, ref: "Recipe", required: true },
-  nutrientsPortion: { type: Number, required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  product: { type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' },
+  NutrientsPortion: Number,
   date: { type: Date, default: Date.now },
   nutrition: {
     calories: Number,
     fats: Number,
     protein: Number,
-    carbohydrates: Number
-  }
+    carbohydrates: Number,
+  },
 });
 
-export default mongoose.model("FoodLog", FoodSchema);
+export default mongoose.model('FoodLog', FoodSchema);

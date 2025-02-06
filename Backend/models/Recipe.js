@@ -1,20 +1,17 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const RecipeSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    ingredients: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ingredient", required: true }],
-    mealType: { type: String, enum: ["Breakfast", "Lunch", "Dinner"], required: true },
-    dietaryPreferences: [{ type: String }], // Changed to an array
-    nutrition: {
-      calories: { type: Number, default: 0 },
-      fats: { type: Number, default: 0 },
-      protein: { type: Number, default: 0 },
-      carbohydrates: { type: Number, default: 0 }
-    },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }
+const recipeSchema = new mongoose.Schema({
+  name: String,
+  ingredients: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredients' }],
+  mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner'] },
+  dietaryPreferences: String,
+  nutrition: {
+    calories: Number,
+    fats: Number,
+    protein: Number,
+    carbohydrates: Number,
   },
-  { timestamps: true }
-);
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+});
 
-export default mongoose.model("Recipe", RecipeSchema);
+export default mongoose.model('Recipe', recipeSchema);

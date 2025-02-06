@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const MealPlanSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  weekStartDate: { type: Date, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  weekStartDate: Date,
   meals: [
     {
-      day: { type: String, required: true }, // Example: "Monday"
-      mealType: { type: String, required: true }, // Example: "Breakfast"
-      recipeId: { type: mongoose.Schema.Types.ObjectId, ref: "Recipe", required: true }
+      day: String,
+      mealType: String,
+      recipeId: { type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }
     }
   ]
 });
 
-export default mongoose.model("MealPlan", MealPlanSchema);
+export default mongoose.model('MealPlan', MealPlanSchema);

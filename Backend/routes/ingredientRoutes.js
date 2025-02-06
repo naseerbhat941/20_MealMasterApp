@@ -3,8 +3,8 @@ import { createIngredient, getAllIngredients, getSingleIngredient, updateIngredi
 
 const router = express.Router();
 
-router.post('/', createIngredient);
 router.get('/', getAllIngredients);
+router.post('/', createIngredient);
 router.get('/:id', getSingleIngredient);
 router.put('/:id', updateIngredient);
 router.delete('/:id', deleteIngredient);

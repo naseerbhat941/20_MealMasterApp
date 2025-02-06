@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const GroceryListSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  items: [{ name: { type: String, required: true }, quantity: { type: String, required: true } }]
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  items: [{ name: String, quantity: String }]
 });
 
-export default mongoose.model("GroceryList", GroceryListSchema);
+export default mongoose.model('GroceryList', GroceryListSchema);
