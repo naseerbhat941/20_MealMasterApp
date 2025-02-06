@@ -1,23 +1,29 @@
-import sgMail from '@sendgrid/mail';
+import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+dotenv.config()
+const transporter = nodemailer.createTransport({
+  service: 'gmail',  // Use Gmail's SMTP service
+  auth: {
+    user: process.env.GMAIL_USER,    // Your Gmail address
+    pass: process.env.GMAIL_PASSWORD // Your Gmail app password
+  }
+});
 
-dotenv.config();
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-export const sendResetEmail = async (email, resetToken) => {
-  const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
-
-  const msg = {
+// Function to send the reset password email
+export const sendResetEmail = (email, resetToken) => {
+  const mailOptions = {
+    from: process.env.GMAIL_USER,  // Your Gmail address
     to: email,
-    from: process.env.EMAIL_SENDER,
     subject: 'Password Reset Request',
-    html: `<p>Click <a href="${resetUrl}">here</a> to reset your password.</p>`,
+    text: `Please use the following token to reset your password: ${resetToken}`,
+    html: `<p>Please use the following token to reset your password: <b>${resetToken}</b></p>`
   };
 
-  try {
-    await sgMail.send(msg);
-  } catch (error) {
-    console.log(error);
-    throw new Error('Unable to send reset email.');
-  }
+  return transporter.sendMail(mailOptions)
+    .then(info => {
+      console.log('Email sent: ' + info.response);
+    })
+    .catch(error => {
+      console.log('Error sending email: ' + error);
+    });
 };
