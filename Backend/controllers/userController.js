@@ -3,9 +3,9 @@ import jwt from "jsonwebtoken";
 import { sendResetEmail } from "../config/emailService.js";
 
 export const register = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, role, dietaryPreferences,allergies,fitnessGoals } = req.body;
   try {
-    const user = new User({ name, email, password, role });
+    const user = new User({ name, email, password, role, dietaryPreferences,allergies,fitnessGoals });
     await user.save();
     res.status(201).json({ message: "User Registered" });
   } catch (err) {
