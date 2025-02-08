@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   role: { type: String, enum: ['user', 'admin', 'nutritionist'], default: 'user' },
   dietaryPreferences: [String],
+  allergies: [String],
   fitnessGoals: String,
   resetToken: String,
   tokenExpiration: Date,
