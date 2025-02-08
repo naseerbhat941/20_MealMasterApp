@@ -11,6 +11,10 @@ import userRoutes from "./routes/userRoutes.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
 import ingredientRoutes from "./routes/ingredientRoutes.js";
 import foodLogRoutes from "./routes/foodLogRoutes.js";
+import mealPlanroutes from "./routes/mealPlanroutes";
+import mealReminderroutes from "./routes/MealReminderroutes.js";
+import grocerylistroutes from "./routes/grocerylistRoutes.js";
+import remainderschedular from "./scheduler/remainderScheduler.js";
 
 dotenv.config();
 
@@ -46,7 +50,9 @@ app.use("/api/users", userRoutes);
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/ingredients", ingredientRoutes);
 app.use("/api/foodlog", foodLogRoutes);
-
+app.use("/api/mealplan",mealPlanroutes);
+app.use("/api/reminder",mealReminderroutes);
+app.use("/api/grocery",grocerylistroutes);
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
