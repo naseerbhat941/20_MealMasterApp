@@ -1,4 +1,4 @@
-// Controller to handle the home route logic
+
 export const home = (req, res) => {
   if (req.isAuthenticated()) {
     res.send(`Hello, ${req.user.displayName}`);

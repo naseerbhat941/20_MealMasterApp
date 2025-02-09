@@ -42,3 +42,19 @@ export const forgotPassword = async (req, res) => {
   await sendResetEmail(email, resetToken);
   res.json({ message: "Reset Link Sent" });
 };
+export const getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    // Respond with the user data
+    res.status(200).json({ msg: "Success", user });
+  } catch (error) {
+    // Handle any errors that occur during the database query
+    console.error(error);
+    res.status(500).json({ msg: "Server error" });
+  }
+};

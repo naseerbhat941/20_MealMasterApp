@@ -16,11 +16,9 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "your_secret_key",
@@ -29,17 +27,11 @@ app.use(
   })
 );
 
-// Initialize passport for handling authentication
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Set up the Google OAuth strategy
 setupGoogleOAuth(passport);
-
-// Mount authentication routes
 app.use("/auth", authRoutes);
 
-// Mount home routes
 app.use("/", homeRoutes);
 
 app.use("/api/users", userRoutes);
@@ -47,12 +39,11 @@ app.use("/api/recipes", recipeRoutes);
 app.use("/api/ingredients", ingredientRoutes);
 app.use("/api/foodlog", foodLogRoutes);
 
-// Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-// Start server
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

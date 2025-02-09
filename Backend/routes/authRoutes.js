@@ -3,13 +3,8 @@ import { googleLogin, googleCallback, logout } from '../controllers/authControll
 
 const router = express.Router();
 
-// Route to start Google OAuth login
 router.get('/google', googleLogin);
-
-// Google OAuth callback route
 router.get('/google/callback', googleCallback);
-
-// Logout route
 router.get('/logout', logout);
 
 export default router;
