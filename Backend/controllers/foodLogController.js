@@ -1,7 +1,7 @@
-const FoodLog = require('../models/foodlog.js');
-const Goal = require('../models/Goal.js');
+import FoodLog from '../models/foodlog.js';
+import Goal from '../models/Goal.js';
 
-const foodentry = async(req,res) => {
+ export const foodentry = async(req,res) => {
     try{
         const {user,product,NutrientsPortion,nutrition} = req.body;
         const newEntry = new FoodLog({user,product,NutrientsPortion,nutrition});
@@ -13,7 +13,7 @@ const foodentry = async(req,res) => {
     }
 };
 
-const getDailyIntake = async(req,res) => {
+export const getDailyIntake = async(req,res) => {
     try{
         const userId = req.params.userId;
         const goal = await Goal.findOne({ user: userId });
@@ -44,7 +44,7 @@ const getDailyIntake = async(req,res) => {
     }
 };
 
-const setGoals = async(req,res) => {
+ export const setGoals = async(req,res) => {
     try{
         const {user,dailyCalories,dailyfats,dailyprotein,dailycarbohydrates} = req.body;
         let goal = await Goal.findOne({user});
@@ -64,7 +64,7 @@ const setGoals = async(req,res) => {
     }
 };
 
-const getGoals = async(req,res) => {
+export const getGoals = async(req,res) => {
     try{
         const userId = req.params.userId;
         const goal = await Goal.findOne({user:userId});
@@ -79,5 +79,3 @@ const getGoals = async(req,res) => {
         }
     }
 }
-
-module.exports = {foodentry,getDailyIntake,setGoals,getGoals};

@@ -1,7 +1,7 @@
-const MealPlan = require('../models/MealPlan.js');
-const Recipe = require('../models/recipemodel.js');
+import  MealPlan from'../models/MealPlan.js';
+import Recipe from'../models/Recipe.js';
 
-const createPlan = async(req,res) => {
+ export const createPlan = async(req,res) => {
     try{
         const {user,weekStartDate, meals} = req.body;
         let mealPlan = await MealPlan.findOne({user,weekStartDate});
@@ -19,7 +19,7 @@ const createPlan = async(req,res) => {
     }
 };
 
-const getPlan = async(req,res) => {
+export const getPlan = async(req,res) => {
     try{
         const userId = req.params.userId;
         const mealPlan = await MealPlan.findOne({user: userId}).sort({weekStartDate: -1}).populate('meals.recipeId');
@@ -33,7 +33,7 @@ const getPlan = async(req,res) => {
     }
 };
 
-const suggestPlans = async(req,res) => {
+export const suggestPlans = async(req,res) => {
     try{
         const {dietaryPreferences} = req.body;
         const suggestRecipe = await Recipe.find({category: {$in: dietaryPreferences}}).limit(10);
@@ -45,4 +45,4 @@ const suggestPlans = async(req,res) => {
 }
 
 
-module.exports = {createPlan,getPlan,suggestPlans};
+

@@ -1,9 +1,9 @@
-const express = require('express');
+import express from'express';
 
-const {setReminder,getReminder} = require('../controllers/mealReminderController.js');
+import {setReminder,getReminder}from'../controllers/mealReminderController.js';
 
 const router = express.Router();
 router.post('/',setReminder);
 router.get('/:userId',getReminder);
 
-module.exports = router;
+export default router;

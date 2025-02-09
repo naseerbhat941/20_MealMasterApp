@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const nutritionGoalSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
@@ -8,4 +8,4 @@ const nutritionGoalSchema = new mongoose.Schema({
     dailycarbohydrates: Number
 });
 
-module.exports = mongoose.model('Goal',nutritionGoalSchema);
+export default mongoose.model('Goal',nutritionGoalSchema);

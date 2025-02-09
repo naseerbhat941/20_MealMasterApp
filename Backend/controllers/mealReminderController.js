@@ -1,6 +1,6 @@
-const MealReminder = require('../models/MealReminder.js');
+import  MealReminder from '../models/MealReminder.js';
 
-const setReminder = async(req,res) => {
+export const setReminder = async(req,res) => {
     try{
         const {user,mealplan,mealtime,message} = req.body;
         const reminder = new MealReminder({user,mealplan,mealtime,message});
@@ -12,7 +12,7 @@ const setReminder = async(req,res) => {
     }
 };
 
-const getReminder = async(req,res) => {
+export const getReminder = async(req,res) => {
     try{
         const {userId} = req.params;
         const reminders = await MealReminder.find({user:userId});
@@ -22,5 +22,3 @@ const getReminder = async(req,res) => {
         res.status(500).json({error:"Error getting reminder"});
     }
 };
-
-module.exports = {setReminder,getReminder};

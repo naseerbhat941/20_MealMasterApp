@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from'mongoose';
 const mealReminderSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId,ref:'User'},
     mealplan : {type:mongoose.Schema.Types.ObjectId,ref:'MealPlan'},
@@ -6,4 +6,4 @@ const mealReminderSchema = new mongoose.Schema({
     message: String
 });
 
-module.exports = mongoose.model('MealReminder',mealReminderSchema);
+export default mongoose.model('MealReminder',mealReminderSchema);

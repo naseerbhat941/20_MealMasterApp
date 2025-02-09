@@ -1,7 +1,7 @@
-const MealPlan = require('../models/MealPlan.js');
-const Recipe = require('../models/recipemodel.js');
+import MealPlan from'../models/MealPlan.js';
+// import Recipe from'../models/recipemodel.js';
 
-const groceryList = async(req,res) => {
+ export const groceryList = async(req,res) => {
     try{
         const userId = req.params.userId;
         const mealPlan = await MealPlan.findOne({user: userId}).populate('meals.recipeId');
@@ -23,5 +23,3 @@ const groceryList = async(req,res) => {
         res.status(500).json({error: 'Unable to create grocery list'});
     }
 }
-
-module.exports = {groceryList};

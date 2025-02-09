@@ -1,6 +1,6 @@
-const cron = require('node-cron');
-const moment = require('moment');
-const MealReminder = require('../models/MealReminder.js');
+import cron from 'node-cron'
+import moment from 'moment';
+import MealReminder from'../models/MealReminder.js'
 cron.schedule('* * * * *',async() => {
     const now = moment().toDate();
     const reminders = await MealReminder.find({mealtime: {$lte:now}});
@@ -10,5 +10,4 @@ cron.schedule('* * * * *',async() => {
         await MealReminder.deleteOne({id: reminder._id});
     })
 });
-
-module.exports = cron;
+export default  cron;
