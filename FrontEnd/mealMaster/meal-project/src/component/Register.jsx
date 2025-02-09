@@ -76,7 +76,7 @@ function Register() {
     try {
       if (validateForm()) {
         const res = await axios.post(
-          "http://localhost:5001/api/auth/register",
+          "http://localhost:3000/api/users/register",
           formData,
           { headers: { "Content-Type": "application/json" } }
         );

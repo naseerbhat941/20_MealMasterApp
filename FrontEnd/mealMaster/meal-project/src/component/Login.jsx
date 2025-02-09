@@ -35,7 +35,7 @@ function Login() {
     try {
       if (validateForm()) {
         const formData = { email, password };  // Ensure formData is declared
-        const res = await axios.post("http://localhost:5001/api/auth/login", formData);
+        const res = await axios.post("http://localhost:3000/api/users/login", formData);
         console.log(res.data);
   
         if (res.status === 200) {
