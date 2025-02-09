@@ -1,9 +1,12 @@
-import express from 'express';
-import { foodEntry, getDailyIntake } from '../controllers/foodLogController.js';
+const express = require('express');
+
+const {foodentry,getDailyIntake,setGoals,getGoals} = require('../controllers/nutritiontrackcontroller.js');
 
 const router = express.Router();
 
-router.post('/', foodEntry);
-router.get('/:userId', getDailyIntake);
+router.post('/log',foodentry);
+router.get('/:userId/daily-intake',getDailyIntake);
+router.post('/goals',setGoals);
+router.get('/goals/:userId',getGoals);
 
-export default router;
+module.exports = router;
