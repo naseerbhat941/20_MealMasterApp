@@ -8,7 +8,7 @@ import { setupGoogleOAuth } from "./config/googleOAuthStrategy.js";
 import authRoutes from "./routes/authRoutes.js";
 import homeRoutes from "./routes/homeRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import recipeRoutes from "./routes/recipeRoutes.js";
+// import recipeRoutes from "./routes/recipeRoutes.js";
 import ingredientRoutes from "./routes/ingredientRoutes.js";
 import foodLogRoutes from "./routes/foodLogRoutes.js";
 // import mealPlanroutes from "./routes/mealPlanroutes.js";
