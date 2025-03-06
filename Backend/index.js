@@ -11,10 +11,10 @@ import userRoutes from "./routes/userRoutes.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
 import ingredientRoutes from "./routes/ingredientRoutes.js";
 import foodLogRoutes from "./routes/foodLogRoutes.js";
-import mealPlanroutes from "./routes/mealPlanroutes.js";
-import mealReminderroutes from "./routes/MealReminderroutes.js";
-import grocerylistroutes from "./routes/grocerylistRoutes.js";
-import remainderschedular from "./scheduler/remainderScheduler.js";
+// import mealPlanroutes from "./routes/mealPlanroutes.js";
+// import mealReminderroutes from "./routes/MealReminderroutes.js";
+// import grocerylistroutes from "./routes/grocerylistRoutes.js";
+// import remainderschedular from "./scheduler/remainderScheduler.js";
 
 dotenv.config();
 
